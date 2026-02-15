@@ -1,715 +1,1087 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Beat The Tracker</title>
+
+  <meta name="description" content="Beat The Tracker is an interactive web app that reveals what websites can access about you, from passive signals to high risk permissions. Explore, test, and understand how online tracking really works.">
+
+  <!-- <meta name="robots" content="index,follow"> -->
+
+  <!-- <link rel="canonical" href="https://0-harshit-0.github.io/beat-the-tracker/"> -->
+  <meta name="author" content="0-harshit-0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"> -->
+
+  <!-- logo32 -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/logo32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/logo32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/logo32.png">
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:title" content="Beat The Tracker | See What Websites Know About You">
+  <meta property="og:description" content="Beat The Tracker is an interactive web app that reveals what websites can access about you, from passive signals to high risk permissions. Explore, test, and understand how online tracking really works.">
+  <meta property="og:image" content="https://0-harshit-0.github.io/beat-the-tracker/assets/logo128.png">
+  <meta property="og:url" content="https://0-harshit-0.github.io/beat-the-tracker/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Beat The Tracker | See What Websites Know About You">
+  <meta name="twitter:description" content="Beat The Tracker is an interactive web app that reveals what websites can access about you, from passive signals to high risk permissions. Explore, test, and understand how online tracking really works.">
+  <meta name="twitter:image" content="https://0-harshit-0.github.io/beat-the-tracker/assets/logo128.png">
+
+<!--   <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Beat The Tracker",
+        "url": "https://0-harshit-0.github.io/beat-the-tracker/",
+        "logo": "https://0-harshit-0.github.io/beat-the-tracker/assets/logo128.png"
+      },
+      {
+        "@type": "WebSite",
+        "url": "https://0-harshit-0.github.io/beat-the-tracker/",
+        "name": "Beat The Tracker",
+        "description": "Beat The Tracker is an interactive web app that reveals what websites can access about you, from passive signals to high risk permissions."
+      }
+    ]
+  }
+  </script> -->
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-slate-600 text-slate-100 min-h-screen">
 
-<header class="border-b border-slate-800">
-  <div class="max-w-7xl mx-auto px-6 py-6">
-    <h1 class="text-2xl font-bold tracking-tight">Beat The Tracker</h1>
-    <p class="text-sm text-slate-400">Explore what a website can access when you visit</p>
-  </div>
-</header>
-
-<main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
-
-  <!-- LOW RISK -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <h2 class="text-xl font-semibold text-green-400">Low Risk · Passive Signals</h2>
-      <span class="text-xs text-slate-300">No permission required</span>
+  <header class="border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <h1 class="text-2xl font-bold tracking-tight">Beat The Tracker</h1>
+      <p class="text-sm text-slate-400">Explore what a website can access when you visit</p>
     </div>
+  </header>
 
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
 
-      <!-- Mouse Movement -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Mouse Movement</h3>
-        <p class="text-sm text-slate-400 mb-3">Tracks cursor position in real time.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="mouseOutput">Move your mouse...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: UX heatmaps, behavior profiling</p>
+    <!-- LOW RISK -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xl font-semibold text-green-400">Low Risk · Passive Signals</h2>
+        <span class="text-xs text-slate-300">No permission required</span>
       </div>
 
-      <!-- Keyboard Activity -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Keyboard Activity</h3>
-        <p class="text-sm text-slate-400 mb-3">Logs keys pressed while on this page.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto whitespace-pre-wrap" id="keyOutput">Start typing...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke analysis, capture of sensitive input</p>
-      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-      <!-- User agent -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">User Agent & Platform</h3>
-        <p class="text-sm text-slate-400 mb-3">Browser string and platform info.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="uaOutput"></div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, analytics</p>
-      </div>
-
-      <!-- Screen info -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Screen & Display</h3>
-        <p class="text-sm text-slate-400 mb-3">Resolution, color depth, orientation.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="screenOutput"></div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: responsive tailoring, fingerprinting</p>
-      </div>
-
-      <!-- Timezone & language -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Timezone & Language</h3>
-        <p class="text-sm text-slate-400 mb-3">Locale and timezone detected from the browser.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="localeOutput"></div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: geo inference, targeted content</p>
-      </div>
-
-      <!-- Connection & battery -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Connection & Battery</h3>
-        <p class="text-sm text-slate-400 mb-3">Network type and battery level if available.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="netBatteryOutput">Checking...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: adapt content, profiling</p>
-      </div>
-
-      <!-- Device memory & cores -->
-      <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Device Memory & CPU</h3>
-        <p class="text-sm text-slate-400 mb-3">Approx memory and number of logical processors.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="hwOutput"></div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, performance targeting</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- MODERATE RISK -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <h2 class="text-xl font-semibold text-yellow-400">Moderate Risk · Behavioral Tracking</h2>
-      <span class="text-xs text-slate-300">No permission required</span>
-    </div>
-
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Scroll behavior -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Scroll Behavior</h3>
-        <p class="text-sm text-slate-400 mb-3">Tracks position and speed of scrolling.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="scrollOutput">Scroll the page...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: engagement metrics, profiling</p>
-      </div>
-
-      <!-- Clicks and focus -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Clicks & Focus Events</h3>
-        <p class="text-sm text-slate-400 mb-3">Records clicks and when the page gains or loses focus.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="clickOutput">Click anywhere on the page...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: ad targeting, behavioral profiling</p>
-      </div>
-
-      <!-- Touch events -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Touch Events</h3>
-        <p class="text-sm text-slate-400 mb-3">Taps, multi-touch and gestures on mobile devices.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="touchOutput">Try taps on a touch device...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: gesture profiling, UX analysis</p>
-      </div>
-
-      <!-- Visibility / idle -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Visibility & Idle</h3>
-        <p class="text-sm text-slate-400 mb-3">Tracks when you switch tabs and basic idle time.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="visOutput">Switch tabs to see visibility changes.</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: attention scoring, ad timing</p>
-      </div>
-
-      <!-- Canvas fingerprint -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Canvas Fingerprint</h3>
-        <p class="text-sm text-slate-400 mb-3">Draws to canvas to get a platform-specific rendering hash.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="canvasOutput">Computing fingerprint...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: cross-site fingerprinting</p>
-      </div>
-
-      <!-- Local storage / cookies -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Local Storage & Cookies</h3>
-        <p class="text-sm text-slate-400 mb-3">Shows keys in localStorage and whether cookies are enabled.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="storageOutput">Checking...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: persistent identifiers, tracking</p>
-      </div>
-
-      <!-- WebGL info -->
-      <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">WebGL Renderer</h3>
-        <p class="text-sm text-slate-400 mb-3">Attempts to read the GPU renderer string via WebGL.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="webglOutput">Detecting...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, device classification</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- HIGH RISK -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <h2 class="text-xl font-semibold text-red-400">High Risk · Sensitive Access</h2>
-      <span class="text-xs text-slate-300">Requires permission or user gesture</span>
-    </div>
-
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Location -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Location Access</h3>
-        <p class="text-sm text-slate-400 mb-3">Requests precise geolocation from your browser.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="locationOutput">Not requested yet.</div>
-        <button onclick="getLocation()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Location</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: tracking real world movements</p>
-      </div>
-
-      <!-- Camera -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Camera Access</h3>
-        <p class="text-sm text-slate-400 mb-3">Requests camera stream via getUserMedia.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="cameraOutput">Camera not requested.</div>
-        <button onclick="requestCamera()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition mb-2">Request Camera</button>
-        <video id="cameraPreview" class="w-full rounded-lg hidden" autoplay playsinline></video>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: visual surveillance, facial analysis</p>
-      </div>
-
-      <!-- Microphone -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Microphone Access</h3>
-        <p class="text-sm text-slate-400 mb-3">Requests microphone stream via getUserMedia.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="micOutput">Microphone not requested.</div>
-        <button onclick="requestMicrophone()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Microphone</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: audio surveillance, voice profiling</p>
-      </div>
-
-      <!-- Clipboard -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Clipboard Read</h3>
-        <p class="text-sm text-slate-400 mb-3">Reads clipboard text after a user gesture.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="clipOutput">No read yet.</div>
-        <button onclick="readClipboard()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Read Clipboard</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: leak copied secrets, tokens</p>
-      </div>
-
-      <!-- Notifications -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Notifications Permission</h3>
-        <p class="text-sm text-slate-400 mb-3">Requests push/notification permission.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="notifOutput">Not requested yet.</div>
-        <button onclick="requestNotifications()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Notifications</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: spam, phishing prompts</p>
-      </div>
-
-      <!-- Device motion (mobile) -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Device Motion & Orientation</h3>
-        <p class="text-sm text-slate-400 mb-3">Accelerometer and orientation data on supported devices.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="motionOutput">Not requested yet.</div>
-        <button onclick="requestDeviceMotion()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Motion</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke inference, gait analysis</p>
-      </div>
-
-      <!-- Bluetooth example -->
-      <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Bluetooth Request</h3>
-        <p class="text-sm text-slate-400 mb-3">Attempts to request a nearby Bluetooth device.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="btOutput">Not requested yet.</div>
-        <button onclick="requestBluetooth()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Bluetooth</button>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: local device linkage, fingerprinting</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- NEW: NETWORK & CORRELATION -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <h2 class="text-xl font-semibold text-purple-400">Network & Correlation · Tracking Hacks</h2>
-      <span class="text-xs text-slate-300">High risk · can reveal IP, ISP, approximate location and local LAN addresses</span>
-    </div>
-
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-      <!-- Public IP & Geo -->
-      <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Public IP & Geo Lookup</h3>
-        <p class="text-sm text-slate-400 mb-3">Queries public IP and geolocation from a public API.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="ipOutput">Fetching public IP and geolocation...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: precise IP location, ISP and org mapping</p>
-      </div>
-
-      <!-- WebRTC local IPs -->
-      <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">WebRTC Local IP Discovery</h3>
-        <p class="text-sm text-slate-400 mb-3">Attempts to reveal local LAN IPs via WebRTC ICE candidates.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="webrtcOutput">Probing local addresses...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: correlate device to home network, local device fingerprinting</p>
-      </div>
-
-      <!-- Time-based inference -->
-      <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Time & Locale Correlation</h3>
-        <p class="text-sm text-slate-400 mb-3">Local time, UTC offset and heuristics to narrow region.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="timeInferOutput">Computing time based inference...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: narrow IP ambiguity, correlate with other signals</p>
-      </div>
-
-      <!-- Combined inference -->
-      <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
-        <h3 class="font-semibold mb-1">Combined Inference</h3>
-        <p class="text-sm text-slate-400 mb-3">Correlates IP geolocation, timezone and user agent to make a best guess.</p>
-        <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="combinedOutput">Waiting for inputs...</div>
-        <p class="mt-3 text-xs text-slate-400">What this could be used for: deanonymization when combined with server logs</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PERMISSIONS SUMMARY -->
-  <section>
-    <div class="flex items-center gap-3 mb-6">
-      <h2 class="text-lg font-semibold text-slate-200">Permissions & Status</h2>
-      <span class="text-xs text-slate-300">Quick view of permission states</span>
-    </div>
-
-    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-3 bg-slate-800 rounded">
-          <div class="text-xs text-slate-400">Geolocation</div>
-          <div id="permGeo" class="text-sm mt-1">-</div>
+        <!-- Mouse Movement -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Mouse Movement</h3>
+          <p class="text-sm text-slate-400 mb-3">Tracks cursor position in real time.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="mouseOutput">Move your mouse...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: UX heatmaps, behavior profiling</p>
         </div>
-        <div class="p-3 bg-slate-800 rounded">
-          <div class="text-xs text-slate-400">Camera</div>
-          <div id="permCamera" class="text-sm mt-1">-</div>
+
+        <!-- Keyboard Activity -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Keyboard Activity</h3>
+          <p class="text-sm text-slate-400 mb-3">Logs keys pressed while on this page.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto whitespace-pre-wrap" id="keyOutput">Start typing...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke analysis, capture of sensitive input</p>
         </div>
-        <div class="p-3 bg-slate-800 rounded">
-          <div class="text-xs text-slate-400">Microphone</div>
-          <div id="permMic" class="text-sm mt-1">-</div>
+
+        <!-- User agent -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">User Agent & Platform</h3>
+          <p class="text-sm text-slate-400 mb-3">Browser string and platform info.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="uaOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, analytics</p>
         </div>
-        <div class="p-3 bg-slate-800 rounded">
-          <div class="text-xs text-slate-400">Notifications</div>
-          <div id="permNotif" class="text-sm mt-1">-</div>
+
+        <!-- Screen info -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Screen & Display</h3>
+          <p class="text-sm text-slate-400 mb-3">Resolution, color depth, orientation.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="screenOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: responsive tailoring, fingerprinting</p>
+        </div>
+
+        <!-- Timezone & language -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Timezone & Language</h3>
+          <p class="text-sm text-slate-400 mb-3">Locale and timezone detected from the browser.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="localeOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: geo inference, targeted content</p>
+        </div>
+
+        <!-- Connection & battery -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Connection & Battery</h3>
+          <p class="text-sm text-slate-400 mb-3">Network type and battery level if available.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="netBatteryOutput">Checking...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: adapt content, profiling</p>
+        </div>
+
+        <!-- Device memory & cores -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Device Memory & CPU</h3>
+          <p class="text-sm text-slate-400 mb-3">Approx memory and number of logical processors.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="hwOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, performance targeting</p>
+        </div>
+
+        <!-- Font Fingerprinting -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Font Fingerprinting</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects installed fonts by measuring text rendering.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="fontOutput">Detecting fonts...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: highly identifying fingerprint based on font sets</p>
+        </div>
+
+        <!-- Audio Fingerprinting -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Audio Fingerprint</h3>
+          <p class="text-sm text-slate-400 mb-3">Uses Web Audio API to create unique audio signature.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="audioOutput">Computing audio fingerprint...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: cross-site fingerprinting via audio stack</p>
+        </div>
+
+        <!-- Media Devices Enumeration -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Media Devices Enumeration</h3>
+          <p class="text-sm text-slate-400 mb-3">Lists cameras/microphones without requiring permission.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="mediaDevicesOutput">Enumerating...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: device fingerprinting without permissions</p>
+        </div>
+
+        <!-- Pointer & Input Capabilities -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Pointer & Input Capabilities</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects mouse, touch, stylus capabilities.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="pointerOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: device type classification</p>
+        </div>
+
+        <!-- Do Not Track -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Do Not Track Signal</h3>
+          <p class="text-sm text-slate-400 mb-3">Ironically, the DNT header becomes a tracking signal.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="dntOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting via privacy preference</p>
+        </div>
+
+        <!-- Color Scheme & Accessibility -->
+        <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Color Scheme & Accessibility</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects dark mode and accessibility preferences.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="prefOutput"></div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: preference-based fingerprinting</p>
+        </div>
+
+        <!-- Speech Synthesis Voices -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Speech Synthesis Voices</h3>
+          <p class="text-sm text-slate-400 mb-3">Lists available text-to-speech voices.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="voicesOutput">Loading voices...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: highly identifying OS/language fingerprint</p>
+        </div>
+
+        <!-- Performance Timing -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Performance Fingerprint</h3>
+          <p class="text-sm text-slate-400 mb-3">Benchmarks CPU to identify device performance class.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="perfOutput">Running benchmark...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: CPU/browser combo identification</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MODERATE RISK -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xl font-semibold text-yellow-400">Moderate Risk · Behavioral Tracking</h2>
+        <span class="text-xs text-slate-300">No permission required</span>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Scroll behavior -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Scroll Behavior</h3>
+          <p class="text-sm text-slate-400 mb-3">Tracks position and speed of scrolling.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="scrollOutput">Scroll the page...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: engagement metrics, profiling</p>
+        </div>
+
+        <!-- Clicks and focus -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Clicks & Focus Events</h3>
+          <p class="text-sm text-slate-400 mb-3">Records clicks and when the page gains or loses focus.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="clickOutput">Click anywhere on the page...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: ad targeting, behavioral profiling</p>
+        </div>
+
+        <!-- Touch events -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Touch Events</h3>
+          <p class="text-sm text-slate-400 mb-3">Taps, multi-touch and gestures on mobile devices.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="touchOutput">Try taps on a touch device...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: gesture profiling, UX analysis</p>
+        </div>
+
+        <!-- Visibility / idle -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Visibility & Idle</h3>
+          <p class="text-sm text-slate-400 mb-3">Tracks when you switch tabs and basic idle time.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="visOutput">Switch tabs to see visibility changes.</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: attention scoring, ad timing</p>
+        </div>
+
+        <!-- Canvas fingerprint -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Canvas Fingerprint</h3>
+          <p class="text-sm text-slate-400 mb-3">Draws to canvas to get a platform-specific rendering hash.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="canvasOutput">Computing fingerprint...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: cross-site fingerprinting</p>
+        </div>
+
+        <!-- Local storage / cookies -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Local Storage & Cookies</h3>
+          <p class="text-sm text-slate-400 mb-3">Shows keys in localStorage and whether cookies are enabled.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="storageOutput">Checking...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: persistent identifiers, tracking</p>
+        </div>
+
+        <!-- WebGL info -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">WebGL Renderer</h3>
+          <p class="text-sm text-slate-400 mb-3">Attempts to read the GPU renderer string via WebGL.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="webglOutput">Detecting...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, device classification</p>
+        </div>
+
+        <!-- Resource Timing -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Resource Timing & Caching</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects cached resources to identify repeat visitors.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="resourceOutput">Checking cache...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: cache-based visitor identification</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HIGH RISK -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xl font-semibold text-red-400">High Risk · Sensitive Access</h2>
+        <span class="text-xs text-slate-300">Requires permission or user gesture</span>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Location -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Location Access</h3>
+          <p class="text-sm text-slate-400 mb-3">Requests precise geolocation from your browser.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="locationOutput">Not requested yet.</div>
+          <button onclick="getLocation()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Location</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: tracking real world movements</p>
+        </div>
+
+        <!-- Camera -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Camera Access</h3>
+          <p class="text-sm text-slate-400 mb-3">Requests camera stream via getUserMedia.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="cameraOutput">Camera not requested.</div>
+          <button onclick="requestCamera()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition mb-2">Request Camera</button>
+          <video id="cameraPreview" class="w-full rounded-lg hidden" autoplay playsinline></video>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: visual surveillance, facial analysis</p>
+        </div>
+
+        <!-- Microphone -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Microphone Access</h3>
+          <p class="text-sm text-slate-400 mb-3">Requests microphone stream via getUserMedia.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="micOutput">Microphone not requested.</div>
+          <button onclick="requestMicrophone()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Microphone</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: audio surveillance, voice profiling</p>
+        </div>
+
+        <!-- Clipboard -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Clipboard Read</h3>
+          <p class="text-sm text-slate-400 mb-3">Reads clipboard text after a user gesture.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="clipOutput">No read yet.</div>
+          <button onclick="readClipboard()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Read Clipboard</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: leak copied secrets, tokens</p>
+        </div>
+
+        <!-- Notifications -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Notifications Permission</h3>
+          <p class="text-sm text-slate-400 mb-3">Requests push/notification permission.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="notifOutput">Not requested yet.</div>
+          <button onclick="requestNotifications()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Notifications</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: spam, phishing prompts</p>
+        </div>
+
+        <!-- Device motion (mobile) -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Device Motion & Orientation</h3>
+          <p class="text-sm text-slate-400 mb-3">Accelerometer and orientation data on supported devices.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="motionOutput">Not requested yet.</div>
+          <button onclick="requestDeviceMotion()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Motion</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke inference, gait analysis</p>
+        </div>
+
+        <!-- Bluetooth example -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Bluetooth Request</h3>
+          <p class="text-sm text-slate-400 mb-3">Attempts to request a nearby Bluetooth device.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="btOutput">Not requested yet.</div>
+          <button onclick="requestBluetooth()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Bluetooth</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: local device linkage, fingerprinting</p>
+        </div>
+
+        <!-- Screen Capture -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Screen Capture</h3>
+          <p class="text-sm text-slate-400 mb-3">Requests screen/window sharing permission.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="screenCaptureOutput">Not requested yet.</div>
+          <button onclick="requestScreenCapture()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request Screen Capture</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: screen recording, surveillance</p>
+        </div>
+
+        <!-- Gamepad -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Gamepad Detection</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects connected game controllers.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="gamepadOutput">Checking for gamepads...</div>
+          <button onclick="detectGamepads()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Detect Gamepads</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: device fingerprinting</p>
+        </div>
+
+        <!-- WebUSB -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">WebUSB Request</h3>
+          <p class="text-sm text-slate-400 mb-3">Attempts to access USB devices.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="usbOutput">Not requested yet.</div>
+          <button onclick="requestUSB()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Request USB</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: hardware fingerprinting, device access</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NEW: NETWORK & CORRELATION -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-xl font-semibold text-purple-400">Network & Correlation · Tracking Hacks</h2>
+        <span class="text-xs text-slate-300">High risk · can reveal IP, ISP, approximate location and local LAN addresses</span>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Public IP & Geo -->
+        <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Public IP & Geo Lookup</h3>
+          <p class="text-sm text-slate-400 mb-3">Queries public IP and geolocation from a public API.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="ipOutput">Fetching public IP and geolocation...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: precise IP location, ISP and org mapping</p>
+        </div>
+
+        <!-- WebRTC local IPs -->
+        <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">WebRTC Local IP Discovery</h3>
+          <p class="text-sm text-slate-400 mb-3">Attempts to reveal local LAN IPs via WebRTC ICE candidates.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="webrtcOutput">Probing local addresses...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: correlate device to home network, local device fingerprinting</p>
+        </div>
+
+        <!-- Time-based inference -->
+        <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Time & Locale Correlation</h3>
+          <p class="text-sm text-slate-400 mb-3">Local time, UTC offset and heuristics to narrow region.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="timeInferOutput">Computing time based inference...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: narrow IP ambiguity, correlate with other signals</p>
+        </div>
+
+        <!-- Combined inference -->
+        <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Combined Inference</h3>
+          <p class="text-sm text-slate-400 mb-3">Correlates IP geolocation, timezone and user agent to make a best guess.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="combinedOutput">Waiting for inputs...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: deanonymization when combined with server logs</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PERMISSIONS SUMMARY -->
+    <section>
+      <div class="flex items-center gap-3 mb-6">
+        <h2 class="text-lg font-semibold text-slate-200">Permissions & Status</h2>
+        <span class="text-xs text-slate-300">Quick view of permission states</span>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-3 bg-slate-800 rounded">
+            <div class="text-xs text-slate-400">Geolocation</div>
+            <div id="permGeo" class="text-sm mt-1">-</div>
+          </div>
+          <div class="p-3 bg-slate-800 rounded">
+            <div class="text-xs text-slate-400">Camera</div>
+            <div id="permCamera" class="text-sm mt-1">-</div>
+          </div>
+          <div class="p-3 bg-slate-800 rounded">
+            <div class="text-xs text-slate-400">Microphone</div>
+            <div id="permMic" class="text-sm mt-1">-</div>
+          </div>
+          <div class="p-3 bg-slate-800 rounded">
+            <div class="text-xs text-slate-400">Notifications</div>
+            <div id="permNotif" class="text-sm mt-1">-</div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+  </main>
 
-<script>
-  // --- LOW RISK auto-readers ---
-  const mouseOutput = document.getElementById("mouseOutput");
-  const keyOutput = document.getElementById("keyOutput");
-  const uaOutput = document.getElementById("uaOutput");
-  const screenOutput = document.getElementById("screenOutput");
-  const localeOutput = document.getElementById("localeOutput");
-  const netBatteryOutput = document.getElementById("netBatteryOutput");
-  const hwOutput = document.getElementById("hwOutput");
-  const canvasOutput = document.getElementById("canvasOutput");
-  const storageOutput = document.getElementById("storageOutput");
-  const webglOutput = document.getElementById("webglOutput");
+  <script>
+    // --- LOW RISK auto-readers ---
+    const mouseOutput = document.getElementById("mouseOutput");
+    const keyOutput = document.getElementById("keyOutput");
+    const uaOutput = document.getElementById("uaOutput");
+    const screenOutput = document.getElementById("screenOutput");
+    const localeOutput = document.getElementById("localeOutput");
+    const netBatteryOutput = document.getElementById("netBatteryOutput");
+    const hwOutput = document.getElementById("hwOutput");
+    const canvasOutput = document.getElementById("canvasOutput");
+    const storageOutput = document.getElementById("storageOutput");
+    const webglOutput = document.getElementById("webglOutput");
 
-  // mouse
-  document.addEventListener("mousemove", (e) => {
-    mouseOutput.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
-  });
+    // mouse
+    document.addEventListener("mousemove", (e) => {
+      mouseOutput.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+    });
 
-  // keyboard
-  document.addEventListener("keydown", (e) => {
-    keyOutput.textContent += `Key: ${e.key}\n`;
-    keyOutput.scrollTop = keyOutput.scrollHeight;
-  });
+    // keyboard
+    document.addEventListener("keydown", (e) => {
+      keyOutput.textContent += `Key: ${e.key}\n`;
+      keyOutput.scrollTop = keyOutput.scrollHeight;
+    });
 
-  // user agent and platform
-  uaOutput.textContent = navigator.userAgent + " | " + (navigator.platform || "unknown");
+    // user agent and platform
+    uaOutput.textContent = navigator.userAgent + " | " + (navigator.platform || "unknown");
 
-  // screen info
-  screenOutput.textContent = `W: ${screen.width} H: ${screen.height} depth: ${screen.colorDepth} orientation: ${screen.orientation ? screen.orientation.type : "n/a"}`;
+    // screen info
+    screenOutput.textContent = `W: ${screen.width} H: ${screen.height} depth: ${screen.colorDepth} orientation: ${screen.orientation ? screen.orientation.type : "n/a"}`;
 
-  // locale, timezone
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown";
-  localeOutput.textContent = `Language: ${navigator.language || "unknown"} | Timezone: ${tz}`;
+    // locale, timezone
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown";
+    localeOutput.textContent = `Language: ${navigator.language || "unknown"} | Timezone: ${tz}`;
 
-  // device memory / cores
-  hwOutput.textContent = `deviceMemory: ${navigator.deviceMemory || "n/a"} GB | cores: ${navigator.hardwareConcurrency || "n/a"}`;
+    // device memory / cores
+    hwOutput.textContent = `deviceMemory: ${navigator.deviceMemory || "n/a"} GB | cores: ${navigator.hardwareConcurrency || "n/a"}`;
 
-  // connection and battery
-  (async function getNetBattery() {
-    const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    let connStr = conn ? `${conn.effectiveType || conn.type || "unknown"} downlink: ${conn.downlink || "n/a"}` : "connection API n/a";
-    let batt = "battery API n/a";
-    if (navigator.getBattery) {
-      try {
-        const b = await navigator.getBattery();
-        batt = `level: ${Math.round(b.level * 100)}% charging: ${b.charging}`;
-      } catch (e) {
-        batt = "battery access error";
-      }
-    }
-    netBatteryOutput.textContent = connStr + " | " + batt;
-  })();
-
-  // localStorage and cookies
-  (function checkStorage() {
-    const keys = Object.keys(localStorage || {}).slice(0, 10).join(", ") || "no keys";
-    const cookies = navigator.cookieEnabled ? "enabled" : "disabled";
-    storageOutput.textContent = `localStorage keys: ${keys}\ncookies: ${cookies}`;
-  })();
-
-  // canvas fingerprint - simple example
-  (function canvasFingerprint() {
-    try {
-      const c = document.createElement("canvas");
-      c.width = 200;
-      c.height = 50;
-      const ctx = c.getContext("2d");
-      ctx.textBaseline = "top";
-      ctx.font = "16px 'Arial'";
-      ctx.fillStyle = "#f60";
-      ctx.fillRect(0, 0, 200, 50);
-      ctx.fillStyle = "#069";
-      ctx.fillText("fingerprint test", 2, 2);
-      ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
-      ctx.fillText("fingerprint test", 4, 4);
-      const data = c.toDataURL();
-      // simple hash
-      let hash = 0;
-      for (let i = 0; i < data.length; i++) hash = (hash << 5) - hash + data.charCodeAt(i);
-      canvasOutput.textContent = `canvas hash: ${hash}`;
-    } catch (e) {
-      canvasOutput.textContent = "canvas not available";
-    }
-  })();
-
-  // webgl renderer
-  (function detectWebGL() {
-    try {
-      const canvas = document.createElement("canvas");
-      const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
-      if (gl) {
-        const dbg = gl.getExtension("WEBGL_debug_renderer_info");
-        const renderer = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : "renderer n/a";
-        webglOutput.textContent = renderer;
-      } else {
-        webglOutput.textContent = "WebGL not available";
-      }
-    } catch (e) {
-      webglOutput.textContent = "WebGL error";
-    }
-  })();
-
-  // --- MODERATE RISK auto listeners ---
-  const scrollOutput = document.getElementById("scrollOutput");
-  const clickOutput = document.getElementById("clickOutput");
-  const touchOutput = document.getElementById("touchOutput");
-  const visOutput = document.getElementById("visOutput");
-
-  let lastScroll = performance.now();
-  document.addEventListener("scroll", () => {
-    const now = performance.now();
-    const y = window.scrollY || document.documentElement.scrollTop;
-    const speed = Math.abs(window.scrollY - (window._lastScrollY || 0)) / Math.max(1, Math.round(now - lastScroll));
-    window._lastScrollY = window.scrollY;
-    lastScroll = now;
-    scrollOutput.textContent = `y: ${Math.round(y)} speed: ${speed.toFixed(2)}`;
-  }, { passive: true });
-
-  document.addEventListener("click", (e) => {
-    clickOutput.textContent = `x: ${e.clientX} y: ${e.clientY} target: ${e.target.tagName}`;
-  });
-
-  window.addEventListener("touchstart", (e) => {
-    touchOutput.textContent = `touches: ${e.touches.length} first: (${e.touches[0]?.clientX || 0}, ${e.touches[0]?.clientY || 0})`;
-  }, { passive: true });
-
-  document.addEventListener("visibilitychange", () => {
-    visOutput.textContent = `visibility: ${document.visibilityState}`;
-  });
-
-  // simple idle detection by inactivity
-  (function idleTimer() {
-    let idle = 0;
-    const idleEl = document.getElementById("visOutput");
-    function reset() { idle = 0; }
-    setInterval(() => {
-      idle += 1;
-      if (idle > 5) idleEl.textContent = `idle for ${idle} seconds`;
-    }, 1000);
-    ["mousemove", "keydown", "scroll", "click", "touchstart"].forEach(ev => document.addEventListener(ev, reset, { passive: true }));
-  })();
-
-  // --- HIGH RISK functions (permission required) ---
-  const locationOutput = document.getElementById("locationOutput");
-  const cameraOutput = document.getElementById("cameraOutput");
-  const micOutput = document.getElementById("micOutput");
-  const clipOutput = document.getElementById("clipOutput");
-  const notifOutput = document.getElementById("notifOutput");
-  const motionOutput = document.getElementById("motionOutput");
-  const btOutput = document.getElementById("btOutput");
-
-  async function getLocation() {
-    locationOutput.textContent = "Requesting permission...";
-    if (!navigator.geolocation) {
-      locationOutput.textContent = "Geolocation not supported.";
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        locationOutput.textContent = `Lat: ${pos.coords.latitude}\nLng: ${pos.coords.longitude}\nAccuracy: ${pos.coords.accuracy}m`;
-        updatePermissionStatus();
-      },
-      (err) => {
-        locationOutput.textContent = "Permission denied or unavailable.";
-        updatePermissionStatus();
-      }
-    );
-  }
-
-  async function requestCamera() {
-    cameraOutput.textContent = "Requesting camera...";
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      cameraOutput.textContent = "Camera granted";
-      const video = document.getElementById("cameraPreview");
-      video.srcObject = stream;
-      video.classList.remove("hidden");
-      updatePermissionStatus();
-    } catch (e) {
-      cameraOutput.textContent = "Camera denied or error";
-      updatePermissionStatus();
-    }
-  }
-
-  async function requestMicrophone() {
-    micOutput.textContent = "Requesting microphone...";
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      micOutput.textContent = "Microphone granted";
-      stream.getTracks().forEach(t => t.stop());
-      updatePermissionStatus();
-    } catch (e) {
-      micOutput.textContent = "Microphone denied or error";
-      updatePermissionStatus();
-    }
-  }
-
-  async function readClipboard() {
-    clipOutput.textContent = "Waiting for paste permission or user gesture...";
-    try {
-      const text = await navigator.clipboard.readText();
-      clipOutput.textContent = `Clipboard: ${text || "(empty)"}`;
-    } catch (e) {
-      clipOutput.textContent = "Clipboard read denied or not supported";
-    }
-  }
-
-  async function requestNotifications() {
-    if (!("Notification" in window)) {
-      notifOutput.textContent = "Notifications not supported";
-      return;
-    }
-    notifOutput.textContent = "Requesting permission...";
-    const p = await Notification.requestPermission();
-    notifOutput.textContent = `Permission: ${p}`;
-    updatePermissionStatus();
-  }
-
-  async function requestDeviceMotion() {
-    motionOutput.textContent = "Requesting device motion...";
-    try {
-      if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
-        const perm = await DeviceMotionEvent.requestPermission();
-        if (perm !== "granted") {
-          motionOutput.textContent = "Motion permission denied";
-          return;
+    // connection and battery
+    (async function getNetBattery() {
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      let connStr = conn ? `${conn.effectiveType || conn.type || "unknown"} downlink: ${conn.downlink || "n/a"}` : "connection API n/a";
+      let batt = "battery API n/a";
+      if (navigator.getBattery) {
+        try {
+          const b = await navigator.getBattery();
+          batt = `level: ${Math.round(b.level * 100)}% charging: ${b.charging}`;
+        } catch (e) {
+          batt = "battery access error";
         }
       }
-      function onMotion(e) {
-        const a = e.accelerationIncludingGravity || {};
-        motionOutput.textContent = `ax:${Math.round(a.x||0)} ay:${Math.round(a.y||0)} az:${Math.round(a.z||0)}`;
-        window.removeEventListener("devicemotion", onMotion);
-      }
-      window.addEventListener("devicemotion", onMotion, { once: true });
-      updatePermissionStatus();
-    } catch (e) {
-      motionOutput.textContent = "Motion permission error or not supported";
-    }
-  }
+      netBatteryOutput.textContent = connStr + " | " + batt;
+    })();
 
-  async function requestBluetooth() {
-    btOutput.textContent = "Requesting Bluetooth device...";
-    if (!navigator.bluetooth) {
-      btOutput.textContent = "Web Bluetooth not supported";
-      return;
-    }
-    try {
-      const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true });
-      btOutput.textContent = `Selected: ${device.name || device.id}`;
-      updatePermissionStatus();
-    } catch (e) {
-      btOutput.textContent = "Bluetooth request cancelled or denied";
-    }
-  }
+    // localStorage and cookies
+    (function checkStorage() {
+      const keys = Object.keys(localStorage || {}).slice(0, 10).join(", ") || "no keys";
+      const cookies = navigator.cookieEnabled ? "enabled" : "disabled";
+      storageOutput.textContent = `localStorage keys: ${keys}\ncookies: ${cookies}`;
+    })();
 
-  // --- NETWORK & CORRELATION automatic probes ---
-  const ipOutput = document.getElementById("ipOutput");
-  const webrtcOutput = document.getElementById("webrtcOutput");
-  const timeInferOutput = document.getElementById("timeInferOutput");
-  const combinedOutput = document.getElementById("combinedOutput");
-
-  // 1) Public IP and IP-based geolocation using a public API (runs automatically)
-  (async function fetchIpInfo() {
-    ipOutput.textContent = "Fetching public IP and geolocation...";
-    const controllers = [
-      // prefer ipapi which typically provides city, region, country, org
-      fetchWithTimeout("https://ipapi.co/json/", { timeout: 5000 }),
-      fetchWithTimeout("https://api.ipify.org?format=json", { timeout: 5000 })
-    ];
-    try {
-      const res = await controllers[0];
-      if (res.ok) {
-        const data = await res.json();
-        // ipapi returns ip, city, region, country_name, org, latitude, longitude
-        ipOutput.textContent = `IP: ${data.ip || "(unknown)"}\n${data.city || ""}${data.region ? ", " + data.region : ""} ${data.country_name ? "(" + data.country_name + ")" : ""}\nOrg: ${data.org || data.org || "n/a"}\nLat/Lng: ${data.latitude || data.lat || "n/a"}/${data.longitude || data.lon || "n/a"}`;
-        window._ipInfo = data;
-        updateCombined();
-        return;
-      } else {
-        throw new Error("ipapi failed");
-      }
-    } catch (e) {
-      // fallback to simple ip fetch
+    // canvas fingerprint - simple example
+    (function canvasFingerprint() {
       try {
-        const resp = await controllers[1];
-        if (resp.ok) {
-          const d = await resp.json();
-          ipOutput.textContent = `IP: ${d.ip || "(unknown)"}\nGeolocation provider fallback required.`;
-          window._ipInfo = { ip: d.ip };
+        const c = document.createElement("canvas");
+        c.width = 200;
+        c.height = 50;
+        const ctx = c.getContext("2d");
+        ctx.textBaseline = "top";
+        ctx.font = "16px 'Arial'";
+        ctx.fillStyle = "#f60";
+        ctx.fillRect(0, 0, 200, 50);
+        ctx.fillStyle = "#069";
+        ctx.fillText("fingerprint test", 2, 2);
+        ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
+        ctx.fillText("fingerprint test", 4, 4);
+        const data = c.toDataURL();
+        // simple hash
+        let hash = 0;
+        for (let i = 0; i < data.length; i++) hash = (hash << 5) - hash + data.charCodeAt(i);
+        canvasOutput.textContent = `canvas hash: ${hash}`;
+      } catch (e) {
+        canvasOutput.textContent = "canvas not available";
+      }
+    })();
+
+    // webgl renderer
+    (function detectWebGL() {
+      try {
+        const canvas = document.createElement("canvas");
+        const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        if (gl) {
+          const dbg = gl.getExtension("WEBGL_debug_renderer_info");
+          const renderer = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : "renderer n/a";
+          webglOutput.textContent = renderer;
+        } else {
+          webglOutput.textContent = "WebGL not available";
+        }
+      } catch (e) {
+        webglOutput.textContent = "WebGL error";
+      }
+    })();
+
+    // --- NEW LOW RISK trackers ---
+    
+    // Font fingerprinting
+    (function fontFingerprint() {
+      const fontOutput = document.getElementById("fontOutput");
+      const baseFonts = ['monospace', 'sans-serif', 'serif'];
+      const testFonts = ['Arial', 'Verdana', 'Times New Roman', 'Courier New', 'Georgia', 'Palatino', 'Garamond', 'Comic Sans MS', 'Trebuchet MS', 'Arial Black', 'Impact'];
+      
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const testString = 'mmmmmmmmmmlli';
+      const textSize = '72px';
+      
+      const baselines = {};
+      baseFonts.forEach(baseFont => {
+        ctx.font = textSize + ' ' + baseFont;
+        baselines[baseFont] = ctx.measureText(testString).width;
+      });
+      
+      const detected = [];
+      testFonts.forEach(font => {
+        let detected_font = false;
+        baseFonts.forEach(baseFont => {
+          ctx.font = textSize + ' ' + font + ',' + baseFont;
+          const width = ctx.measureText(testString).width;
+          if (width !== baselines[baseFont]) {
+            detected_font = true;
+          }
+        });
+        if (detected_font) detected.push(font);
+      });
+      
+      fontOutput.textContent = `Detected fonts: ${detected.length}\nSample: ${detected.slice(0, 5).join(", ")}${detected.length > 5 ? "..." : ""}`;
+    })();
+
+    // Audio fingerprinting (modern approach without deprecated APIs)
+    (function audioFingerprint() {
+      const audioOutput = document.getElementById("audioOutput");
+      try {
+        // Use OfflineAudioContext to avoid autoplay policy and deprecation warnings
+        const context = new OfflineAudioContext(1, 44100, 44100);
+        const oscillator = context.createOscillator();
+        const compressor = context.createDynamicsCompressor();
+        
+        oscillator.type = "triangle";
+        oscillator.frequency.value = 10000;
+        
+        compressor.threshold.value = -50;
+        compressor.knee.value = 40;
+        compressor.ratio.value = 12;
+        compressor.attack.value = 0;
+        compressor.release.value = 0.25;
+        
+        oscillator.connect(compressor);
+        compressor.connect(context.destination);
+        
+        oscillator.start(0);
+        context.startRendering();
+        
+        context.oncomplete = function(event) {
+          const output = event.renderedBuffer.getChannelData(0);
+          let hash = 0;
+          for (let i = 4500; i < 5000; i++) {
+            hash += Math.abs(output[i]);
+          }
+          audioOutput.textContent = `Audio fingerprint hash: ${hash.toFixed(6)}\nBased on DynamicsCompressor signature`;
+        };
+        
+      } catch (e) {
+        audioOutput.textContent = "Web Audio API not available";
+      }
+    })();
+
+    // Media devices enumeration (without permission)
+    (async function enumerateMediaDevices() {
+      const mediaDevicesOutput = document.getElementById("mediaDevicesOutput");
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices();
+        const videoinput = devices.filter(d => d.kind === 'videoinput').length;
+        const audioinput = devices.filter(d => d.kind === 'audioinput').length;
+        const audiooutput = devices.filter(d => d.kind === 'audiooutput').length;
+        mediaDevicesOutput.textContent = `Cameras: ${videoinput}\nMicrophones: ${audioinput}\nSpeakers: ${audiooutput}`;
+      } catch (e) {
+        mediaDevicesOutput.textContent = "Media devices enumeration not available";
+      }
+    })();
+
+    // Pointer capabilities
+    (function detectPointerCapabilities() {
+      const pointerOutput = document.getElementById("pointerOutput");
+      const hasCoarse = window.matchMedia('(pointer: coarse)').matches;
+      const hasFine = window.matchMedia('(pointer: fine)').matches;
+      const canHover = window.matchMedia('(hover: hover)').matches;
+      const maxTouch = navigator.maxTouchPoints || 0;
+      
+      pointerOutput.textContent = `Pointer: ${hasFine ? 'fine' : hasCoarse ? 'coarse' : 'none'}\nHover: ${canHover}\nMax touch points: ${maxTouch}`;
+    })();
+
+    // Do Not Track
+    (function detectDNT() {
+      const dntOutput = document.getElementById("dntOutput");
+      const dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      dntOutput.textContent = `Do Not Track: ${dnt || "not set"}`;
+    })();
+
+    // Color scheme and accessibility preferences
+    (function detectPreferences() {
+      const prefOutput = document.getElementById("prefOutput");
+      const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const highContrast = window.matchMedia('(prefers-contrast: high)').matches;
+      
+      prefOutput.textContent = `Dark mode: ${darkMode}\nReduced motion: ${reducedMotion}\nHigh contrast: ${highContrast}`;
+    })();
+
+    // Speech synthesis voices
+    (function detectVoices() {
+      const voicesOutput = document.getElementById("voicesOutput");
+      if (!window.speechSynthesis) {
+        voicesOutput.textContent = "Speech synthesis not available";
+        return;
+      }
+      
+      function updateVoices() {
+        const voices = speechSynthesis.getVoices();
+        if (voices.length > 0) {
+          const voiceList = voices.map(v => `${v.name} (${v.lang})`).slice(0, 3).join("\n");
+          voicesOutput.textContent = `${voices.length} voices found\nSample:\n${voiceList}`;
+        } else {
+          voicesOutput.textContent = "No voices available";
+        }
+      }
+      
+      speechSynthesis.onvoiceschanged = updateVoices;
+      updateVoices();
+    })();
+
+    // Performance fingerprint
+    (function performanceBenchmark() {
+      const perfOutput = document.getElementById("perfOutput");
+      const start = performance.now();
+      let iterations = 0;
+      
+      // Simple CPU benchmark
+      for (let i = 0; i < 1000000; i++) {
+        Math.sqrt(i);
+        iterations++;
+      }
+      
+      const elapsed = performance.now() - start;
+      perfOutput.textContent = `1M iterations: ${elapsed.toFixed(2)}ms\nPerformance class: ${elapsed < 20 ? "High" : elapsed < 50 ? "Medium" : "Low"}`;
+    })();
+
+    // --- MODERATE RISK auto listeners ---
+    const scrollOutput = document.getElementById("scrollOutput");
+    const clickOutput = document.getElementById("clickOutput");
+    const touchOutput = document.getElementById("touchOutput");
+    const visOutput = document.getElementById("visOutput");
+
+    let lastScroll = performance.now();
+    document.addEventListener("scroll", () => {
+      const now = performance.now();
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const speed = Math.abs(window.scrollY - (window._lastScrollY || 0)) / Math.max(1, Math.round(now - lastScroll));
+      window._lastScrollY = window.scrollY;
+      lastScroll = now;
+      scrollOutput.textContent = `y: ${Math.round(y)} speed: ${speed.toFixed(2)}`;
+    }, { passive: true });
+
+    document.addEventListener("click", (e) => {
+      clickOutput.textContent = `x: ${e.clientX} y: ${e.clientY} target: ${e.target.tagName}`;
+    });
+
+    window.addEventListener("touchstart", (e) => {
+      touchOutput.textContent = `touches: ${e.touches.length} first: (${e.touches[0]?.clientX || 0}, ${e.touches[0]?.clientY || 0})`;
+    }, { passive: true });
+
+    document.addEventListener("visibilitychange", () => {
+      visOutput.textContent = `visibility: ${document.visibilityState}`;
+    });
+
+    // simple idle detection by inactivity
+    (function idleTimer() {
+      let idle = 0;
+      const idleEl = document.getElementById("visOutput");
+      function reset() { idle = 0; }
+      setInterval(() => {
+        idle += 1;
+        if (idle > 5) idleEl.textContent = `idle for ${idle} seconds`;
+      }, 1000);
+      ["mousemove", "keydown", "scroll", "click", "touchstart"].forEach(ev => document.addEventListener(ev, reset, { passive: true }));
+    })();
+
+    // Resource timing and cache detection
+    (function detectResourceTiming() {
+      const resourceOutput = document.getElementById("resourceOutput");
+      try {
+        const resources = performance.getEntriesByType('resource');
+        const cached = resources.filter(r => r.transferSize === 0).length;
+        const total = resources.length;
+        resourceOutput.textContent = `Resources loaded: ${total}\nFrom cache: ${cached}\nCache ratio: ${total > 0 ? ((cached/total)*100).toFixed(0) : 0}%`;
+      } catch (e) {
+        resourceOutput.textContent = "Resource timing not available";
+      }
+    })();
+
+    // --- HIGH RISK functions (permission required) ---
+    const locationOutput = document.getElementById("locationOutput");
+    const cameraOutput = document.getElementById("cameraOutput");
+    const micOutput = document.getElementById("micOutput");
+    const clipOutput = document.getElementById("clipOutput");
+    const notifOutput = document.getElementById("notifOutput");
+    const motionOutput = document.getElementById("motionOutput");
+    const btOutput = document.getElementById("btOutput");
+
+    async function getLocation() {
+      locationOutput.textContent = "Requesting permission...";
+      if (!navigator.geolocation) {
+        locationOutput.textContent = "Geolocation not supported.";
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          locationOutput.textContent = `Lat: ${pos.coords.latitude}\nLng: ${pos.coords.longitude}\nAccuracy: ${pos.coords.accuracy}m`;
+          updatePermissionStatus();
+        },
+        (err) => {
+          locationOutput.textContent = "Permission denied or unavailable.";
+          updatePermissionStatus();
+        }
+      );
+    }
+
+    async function requestCamera() {
+      cameraOutput.textContent = "Requesting camera...";
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        cameraOutput.textContent = "Camera granted";
+        const video = document.getElementById("cameraPreview");
+        video.srcObject = stream;
+        video.classList.remove("hidden");
+        updatePermissionStatus();
+      } catch (e) {
+        cameraOutput.textContent = "Camera denied or error";
+        updatePermissionStatus();
+      }
+    }
+
+    async function requestMicrophone() {
+      micOutput.textContent = "Requesting microphone...";
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        micOutput.textContent = "Microphone granted";
+        stream.getTracks().forEach(t => t.stop());
+        updatePermissionStatus();
+      } catch (e) {
+        micOutput.textContent = "Microphone denied or error";
+        updatePermissionStatus();
+      }
+    }
+
+    async function readClipboard() {
+      clipOutput.textContent = "Waiting for paste permission or user gesture...";
+      try {
+        const text = await navigator.clipboard.readText();
+        clipOutput.textContent = `Clipboard: ${text || "(empty)"}`;
+      } catch (e) {
+        clipOutput.textContent = "Clipboard read denied or not supported";
+      }
+    }
+
+    async function requestNotifications() {
+      if (!("Notification" in window)) {
+        notifOutput.textContent = "Notifications not supported";
+        return;
+      }
+      notifOutput.textContent = "Requesting permission...";
+      const p = await Notification.requestPermission();
+      notifOutput.textContent = `Permission: ${p}`;
+      updatePermissionStatus();
+    }
+
+    async function requestDeviceMotion() {
+      motionOutput.textContent = "Requesting device motion...";
+      try {
+        if (typeof DeviceMotionEvent !== "undefined" && typeof DeviceMotionEvent.requestPermission === "function") {
+          const perm = await DeviceMotionEvent.requestPermission();
+          if (perm !== "granted") {
+            motionOutput.textContent = "Motion permission denied";
+            return;
+          }
+        }
+        function onMotion(e) {
+          const a = e.accelerationIncludingGravity || {};
+          motionOutput.textContent = `ax:${Math.round(a.x||0)} ay:${Math.round(a.y||0)} az:${Math.round(a.z||0)}`;
+          window.removeEventListener("devicemotion", onMotion);
+        }
+        window.addEventListener("devicemotion", onMotion, { once: true });
+        updatePermissionStatus();
+      } catch (e) {
+        motionOutput.textContent = "Motion permission error or not supported";
+      }
+    }
+
+    async function requestBluetooth() {
+      btOutput.textContent = "Requesting Bluetooth device...";
+      if (!navigator.bluetooth) {
+        btOutput.textContent = "Web Bluetooth not supported";
+        return;
+      }
+      try {
+        const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true });
+        btOutput.textContent = `Selected: ${device.name || device.id}`;
+        updatePermissionStatus();
+      } catch (e) {
+        btOutput.textContent = "Bluetooth request cancelled or denied";
+      }
+    }
+
+    // --- NEW HIGH RISK functions ---
+    
+    // Screen capture
+    async function requestScreenCapture() {
+      const screenCaptureOutput = document.getElementById("screenCaptureOutput");
+      screenCaptureOutput.textContent = "Requesting screen capture...";
+      try {
+        const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        screenCaptureOutput.textContent = "Screen capture granted";
+        stream.getTracks().forEach(t => t.stop());
+      } catch (e) {
+        screenCaptureOutput.textContent = "Screen capture denied or not supported";
+      }
+    }
+
+    // Gamepad detection
+    function detectGamepads() {
+      const gamepadOutput = document.getElementById("gamepadOutput");
+      const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+      const connected = Array.from(gamepads).filter(g => g !== null);
+      
+      if (connected.length > 0) {
+        gamepadOutput.textContent = `Connected: ${connected.length}\n${connected.map(g => g.id).join("\n")}`;
+      } else {
+        gamepadOutput.textContent = "No gamepads detected";
+      }
+    }
+
+    // WebUSB
+    async function requestUSB() {
+      const usbOutput = document.getElementById("usbOutput");
+      usbOutput.textContent = "Requesting USB device...";
+      if (!navigator.usb) {
+        usbOutput.textContent = "WebUSB not supported";
+        return;
+      }
+      try {
+        const device = await navigator.usb.requestDevice({ filters: [] });
+        usbOutput.textContent = `Selected: ${device.productName || device.serialNumber || "USB device"}`;
+      } catch (e) {
+        usbOutput.textContent = "USB request cancelled or denied";
+      }
+    }
+
+    // Auto-detect gamepads on page load
+    (function autoDetectGamepads() {
+      const gamepadOutput = document.getElementById("gamepadOutput");
+      const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+      const connected = Array.from(gamepads).filter(g => g !== null);
+      
+      if (connected.length > 0) {
+        gamepadOutput.textContent = `Auto-detected: ${connected.length}\n${connected.map(g => g.id).join("\n")}`;
+      } else {
+        gamepadOutput.textContent = "No gamepads detected (click button to refresh)";
+      }
+    })();
+
+    // --- NETWORK & CORRELATION automatic probes ---
+    const ipOutput = document.getElementById("ipOutput");
+    const webrtcOutput = document.getElementById("webrtcOutput");
+    const timeInferOutput = document.getElementById("timeInferOutput");
+    const combinedOutput = document.getElementById("combinedOutput");
+
+    // 1) Public IP and IP-based geolocation using a public API (runs automatically)
+    (async function fetchIpInfo() {
+      ipOutput.textContent = "Fetching public IP and geolocation...";
+      const controllers = [
+        // prefer ipapi which typically provides city, region, country, org
+        fetchWithTimeout("https://ipapi.co/json/", { timeout: 5000 }),
+        fetchWithTimeout("https://api.ipify.org?format=json", { timeout: 5000 })
+      ];
+      try {
+        const res = await controllers[0];
+        if (res.ok) {
+          const data = await res.json();
+          // ipapi returns ip, city, region, country_name, org, latitude, longitude
+          ipOutput.textContent = `IP: ${data.ip || "(unknown)"}\n${data.city || ""}${data.region ? ", " + data.region : ""} ${data.country_name ? "(" + data.country_name + ")" : ""}\nOrg: ${data.org || data.org || "n/a"}\nLat/Lng: ${data.latitude || data.lat || "n/a"}/${data.longitude || data.lon || "n/a"}`;
+          window._ipInfo = data;
           updateCombined();
           return;
+        } else {
+          throw new Error("ipapi failed");
         }
-      } catch (e2) {
-        ipOutput.textContent = "Unable to fetch public IP or geolocation (network or CORS blocked).";
+      } catch (e) {
+        // fallback to simple ip fetch
+        try {
+          const resp = await controllers[1];
+          if (resp.ok) {
+            const d = await resp.json();
+            ipOutput.textContent = `IP: ${d.ip || "(unknown)"}\nGeolocation provider fallback required.`;
+            window._ipInfo = { ip: d.ip };
+            updateCombined();
+            return;
+          }
+        } catch (e2) {
+          ipOutput.textContent = "Unable to fetch public IP or geolocation (network or CORS blocked).";
+        }
+      }
+    })();
+
+    // helper for fetch with timeout
+    function fetchWithTimeout(url, { timeout = 5000 } = {}) {
+      const ctl = new AbortController();
+      const id = setTimeout(() => ctl.abort(), timeout);
+      return fetch(url, { signal: ctl.signal }).finally(() => clearTimeout(id));
+    }
+
+    // 2) WebRTC trick to try to reveal local IP addresses via ICE candidates
+    (function discoverLocalIPs() {
+      webrtcOutput.textContent = "Probing local addresses via WebRTC (may be blocked by browser)...";
+      const ips = new Set();
+      // modern browsers may prevent this; wrap in try
+      try {
+        const pc = new RTCPeerConnection({ iceServers: [] });
+        // data channel is needed for some browsers
+        pc.createDataChannel("probe");
+        pc.onicecandidate = (evt) => {
+          if (!evt || !evt.candidate) return;
+          const cand = evt.candidate.candidate;
+          // extract ips from candidate string
+          const parts = cand.split(/\s+/);
+          for (let i = 0; i < parts.length; i++) {
+            const p = parts[i];
+            // simple ip regex for IPv4 and v6
+            const ipMatch = p.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})|([a-f0-9:]{5,})/i);
+            if (ipMatch) ips.add(ipMatch[0]);
+          }
+        };
+        pc.createOffer().then(o => pc.setLocalDescription(o)).catch(() => {});
+        // finalize after a short timeout
+        setTimeout(() => {
+          const list = Array.from(ips);
+          if (list.length) {
+            webrtcOutput.textContent = `Local IPs found: ${list.join(", ")}`;
+          } else {
+            webrtcOutput.textContent = "No local IPs discovered or browser blocked the probe.";
+          }
+          try { pc.close(); } catch (e) {}
+        }, 1500);
+      } catch (e) {
+        webrtcOutput.textContent = "WebRTC local IP probe not supported or blocked";
+      }
+    })();
+
+    // 3) Time based inference
+    (function timeBasedInference() {
+      const now = new Date();
+      const offsetMinutes = now.getTimezoneOffset(); // minutes behind UTC
+      const offsetHours = -offsetMinutes / 60;
+      const localTime = now.toLocaleString();
+      // Simple heuristics: use timezone string to show likely region candidates is complex, so just show offset
+      timeInferOutput.textContent = `Local time: ${localTime}\nUTC offset: ${offsetHours >= 0 ? "+" : ""}${offsetHours} hours\nTimezone id: ${tz}`;
+      window._timeInfo = { localTime, offsetHours, tz };
+      updateCombined();
+    })();
+
+    // 4) Combined inference - correlate ip geolocation and timezone and ua
+    function updateCombined() {
+      const ip = window._ipInfo || {};
+      const time = window._timeInfo || {};
+      const ua = navigator.userAgent || "";
+      const lines = [];
+      if (ip.ip) lines.push(`IP: ${ip.ip}`);
+      if (ip.city || ip.region || ip.country_name) lines.push(`IP location: ${[ip.city, ip.region, ip.country_name].filter(Boolean).join(", ")}`);
+      if (ip.org) lines.push(`Org: ${ip.org}`);
+      if (time.tz) lines.push(`Timezone: ${time.tz} (offset ${time.offsetHours})`);
+      if (ua) lines.push(`UA snippet: ${ua.split(" ").slice(0,3).join(" ")}`);
+      if (lines.length === 0) {
+        combinedOutput.textContent = "Waiting for IP and timezone probes to complete...";
+      } else {
+        combinedOutput.textContent = lines.join("\n");
       }
     }
-  })();
 
-  // helper for fetch with timeout
-  function fetchWithTimeout(url, { timeout = 5000 } = {}) {
-    const ctl = new AbortController();
-    const id = setTimeout(() => ctl.abort(), timeout);
-    return fetch(url, { signal: ctl.signal }).finally(() => clearTimeout(id));
-  }
+    // call updateCombined after ip fetch completes - handled in fetchIpInfo and timeBasedInference above
 
-  // 2) WebRTC trick to try to reveal local IP addresses via ICE candidates
-  (function discoverLocalIPs() {
-    webrtcOutput.textContent = "Probing local addresses via WebRTC (may be blocked by browser)...";
-    const ips = new Set();
-    // modern browsers may prevent this; wrap in try
-    try {
-      const pc = new RTCPeerConnection({ iceServers: [] });
-      // data channel is needed for some browsers
-      pc.createDataChannel("probe");
-      pc.onicecandidate = (evt) => {
-        if (!evt || !evt.candidate) return;
-        const cand = evt.candidate.candidate;
-        // extract ips from candidate string
-        const parts = cand.split(/\s+/);
-        for (let i = 0; i < parts.length; i++) {
-          const p = parts[i];
-          // simple ip regex for IPv4 and v6
-          const ipMatch = p.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})|([a-f0-9:]{5,})/i);
-          if (ipMatch) ips.add(ipMatch[0]);
-        }
-      };
-      pc.createOffer().then(o => pc.setLocalDescription(o)).catch(() => {});
-      // finalize after a short timeout
-      setTimeout(() => {
-        const list = Array.from(ips);
-        if (list.length) {
-          webrtcOutput.textContent = `Local IPs found: ${list.join(", ")}`;
-        } else {
-          webrtcOutput.textContent = "No local IPs discovered or browser blocked the probe.";
-        }
-        try { pc.close(); } catch (e) {}
-      }, 1500);
-    } catch (e) {
-      webrtcOutput.textContent = "WebRTC local IP probe not supported or blocked";
+    // --- PERMISSIONS SUMMARY ---
+    const permGeo = document.getElementById("permGeo");
+    const permCamera = document.getElementById("permCamera");
+    const permMic = document.getElementById("permMic");
+    const permNotif = document.getElementById("permNotif");
+
+    async function queryPermission(name) {
+      if (!navigator.permissions) return "unsupported";
+      try {
+        const status = await navigator.permissions.query({ name });
+        return status.state || "unknown";
+      } catch (e) {
+        return "unavailable";
+      }
     }
-  })();
 
-  // 3) Time based inference
-  (function timeBasedInference() {
-    const now = new Date();
-    const offsetMinutes = now.getTimezoneOffset(); // minutes behind UTC
-    const offsetHours = -offsetMinutes / 60;
-    const localTime = now.toLocaleString();
-    // Simple heuristics: use timezone string to show likely region candidates is complex, so just show offset
-    timeInferOutput.textContent = `Local time: ${localTime}\nUTC offset: ${offsetHours >= 0 ? "+" : ""}${offsetHours} hours\nTimezone id: ${tz}`;
-    window._timeInfo = { localTime, offsetHours, tz };
-    updateCombined();
-  })();
-
-  // 4) Combined inference - correlate ip geolocation and timezone and ua
-  function updateCombined() {
-    const ip = window._ipInfo || {};
-    const time = window._timeInfo || {};
-    const ua = navigator.userAgent || "";
-    const lines = [];
-    if (ip.ip) lines.push(`IP: ${ip.ip}`);
-    if (ip.city || ip.region || ip.country_name) lines.push(`IP location: ${[ip.city, ip.region, ip.country_name].filter(Boolean).join(", ")}`);
-    if (ip.org) lines.push(`Org: ${ip.org}`);
-    if (time.tz) lines.push(`Timezone: ${time.tz} (offset ${time.offsetHours})`);
-    if (ua) lines.push(`UA snippet: ${ua.split(" ").slice(0,3).join(" ")}`);
-    if (lines.length === 0) {
-      combinedOutput.textContent = "Waiting for IP and timezone probes to complete...";
-    } else {
-      combinedOutput.textContent = lines.join("\n");
+    async function updatePermissionStatus() {
+      permGeo.textContent = await queryPermission("geolocation");
+      permCamera.textContent = await queryPermission("camera");
+      permMic.textContent = await queryPermission("microphone");
+      permNotif.textContent = (typeof Notification !== "undefined") ? Notification.permission : "unsupported";
     }
-  }
 
-  // call updateCombined after ip fetch completes - handled in fetchIpInfo and timeBasedInference above
+    // initial update
+    updatePermissionStatus();
+    // refresh permissions occasionally
+    setInterval(updatePermissionStatus, 5000);
 
-  // --- PERMISSIONS SUMMARY ---
-  const permGeo = document.getElementById("permGeo");
-  const permCamera = document.getElementById("permCamera");
-  const permMic = document.getElementById("permMic");
-  const permNotif = document.getElementById("permNotif");
+    // initial combined update in case ip or time already set
+    setTimeout(updateCombined, 800);
 
-  async function queryPermission(name) {
-    if (!navigator.permissions) return "unsupported";
-    try {
-      const status = await navigator.permissions.query({ name });
-      return status.state || "unknown";
-    } catch (e) {
-      return "unavailable";
-    }
-  }
-
-  async function updatePermissionStatus() {
-    permGeo.textContent = await queryPermission("geolocation");
-    permCamera.textContent = await queryPermission("camera");
-    permMic.textContent = await queryPermission("microphone");
-    permNotif.textContent = (typeof Notification !== "undefined") ? Notification.permission : "unsupported";
-  }
-
-  // initial update
-  updatePermissionStatus();
-  // refresh permissions occasionally
-  setInterval(updatePermissionStatus, 5000);
-
-  // initial combined update in case ip or time already set
-  setTimeout(updateCombined, 800);
-
-</script>
+  </script>
 
 </body>
 </html>

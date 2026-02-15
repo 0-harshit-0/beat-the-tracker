@@ -1,0 +1,33 @@
+<svg width="96" height="96" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Background -->
+  <rect width="16" height="16" fill="#0f172a"/>
+
+  <!-- Antenna -->
+  <rect x="7" y="1" width="2" height="1" fill="#22c55e"/>
+  <rect x="8" y="2" width="1" height="1" fill="#22c55e"/>
+
+  <!-- Body Top -->
+  <rect x="5" y="3" width="6" height="1" fill="#22c55e"/>
+
+  <!-- Main Body -->
+  <rect x="4" y="4" width="8" height="5" fill="#16a34a"/>
+
+  <!-- Side Blocks -->
+  <rect x="3" y="5" width="1" height="3" fill="#16a34a"/>
+  <rect x="12" y="5" width="1" height="3" fill="#16a34a"/>
+
+  <!-- Eye Outer -->
+  <rect x="6" y="6" width="4" height="2" fill="#ef4444"/>
+
+  <!-- Eye Pupil -->
+  <rect x="7" y="6" width="2" height="2" fill="#7f1d1d"/>
+
+  <!-- Legs -->
+  <rect x="4" y="9" width="2" height="1" fill="#22c55e"/>
+  <rect x="10" y="9" width="2" height="1" fill="#22c55e"/>
+  <rect x="6" y="10" width="1" height="1" fill="#22c55e"/>
+  <rect x="9" y="10" width="1" height="1" fill="#22c55e"/>
+
+  <!-- Glitch Pixel -->
+  <rect x="13" y="4" width="1" height="1" fill="#ef4444"/>
+</svg>
