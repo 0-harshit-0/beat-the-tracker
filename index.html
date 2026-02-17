@@ -67,7 +67,6 @@
 
   <main class="max-w-7xl mx-auto px-6 py-10 space-y-12">
 
-    <!-- LOW RISK -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <h2 class="text-xl font-semibold text-green-400">Low Risk · Passive Signals</h2>
@@ -76,7 +75,6 @@
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Mouse Movement -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Mouse Movement</h3>
           <p class="text-sm text-slate-400 mb-3">Tracks cursor position in real time.</p>
@@ -84,7 +82,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: UX heatmaps, behavior profiling</p>
         </div>
 
-        <!-- Keyboard Activity -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Keyboard Activity</h3>
           <p class="text-sm text-slate-400 mb-3">Logs keys pressed while on this page.</p>
@@ -92,7 +89,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke analysis, capture of sensitive input</p>
         </div>
 
-        <!-- User agent -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">User Agent & Platform</h3>
           <p class="text-sm text-slate-400 mb-3">Browser string and platform info.</p>
@@ -100,7 +96,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, analytics</p>
         </div>
 
-        <!-- Screen info -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Screen & Display</h3>
           <p class="text-sm text-slate-400 mb-3">Resolution, color depth, orientation.</p>
@@ -108,7 +103,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: responsive tailoring, fingerprinting</p>
         </div>
 
-        <!-- Timezone & language -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Timezone & Language</h3>
           <p class="text-sm text-slate-400 mb-3">Locale and timezone detected from the browser.</p>
@@ -116,7 +110,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: geo inference, targeted content</p>
         </div>
 
-        <!-- Connection & battery -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Connection & Battery</h3>
           <p class="text-sm text-slate-400 mb-3">Network type and battery level if available.</p>
@@ -124,7 +117,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: adapt content, profiling</p>
         </div>
 
-        <!-- Device memory & cores -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Device Memory & CPU</h3>
           <p class="text-sm text-slate-400 mb-3">Approx memory and number of logical processors.</p>
@@ -132,7 +124,13 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, performance targeting</p>
         </div>
 
-        <!-- Font Fingerprinting -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Window Property Entropy</h3>
+          <p class="text-sm text-slate-400 mb-3">Counts global variables to identify environment uniqueness.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="entropyOutput">Scanning window object...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: detecting automation (bots) or unique browser configs</p>
+        </div>
+
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Font Fingerprinting</h3>
           <p class="text-sm text-slate-400 mb-3">Detects installed fonts by measuring text rendering.</p>
@@ -140,7 +138,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: highly identifying fingerprint based on font sets</p>
         </div>
 
-        <!-- Audio Fingerprinting -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Audio Fingerprint</h3>
           <p class="text-sm text-slate-400 mb-3">Uses Web Audio API to create unique audio signature.</p>
@@ -148,7 +145,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: cross-site fingerprinting via audio stack</p>
         </div>
 
-        <!-- Media Devices Enumeration -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Media Devices Enumeration</h3>
           <p class="text-sm text-slate-400 mb-3">Lists cameras/microphones without requiring permission.</p>
@@ -156,7 +152,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: device fingerprinting without permissions</p>
         </div>
 
-        <!-- Pointer & Input Capabilities -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Pointer & Input Capabilities</h3>
           <p class="text-sm text-slate-400 mb-3">Detects mouse, touch, stylus capabilities.</p>
@@ -164,7 +159,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: device type classification</p>
         </div>
 
-        <!-- Do Not Track -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Do Not Track Signal</h3>
           <p class="text-sm text-slate-400 mb-3">Ironically, the DNT header becomes a tracking signal.</p>
@@ -172,7 +166,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting via privacy preference</p>
         </div>
 
-        <!-- Color Scheme & Accessibility -->
         <div class="bg-slate-900 border border-green-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Color Scheme & Accessibility</h3>
           <p class="text-sm text-slate-400 mb-3">Detects dark mode and accessibility preferences.</p>
@@ -180,7 +173,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: preference-based fingerprinting</p>
         </div>
 
-        <!-- Speech Synthesis Voices -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Speech Synthesis Voices</h3>
           <p class="text-sm text-slate-400 mb-3">Lists available text-to-speech voices.</p>
@@ -188,7 +180,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: highly identifying OS/language fingerprint</p>
         </div>
 
-        <!-- Performance Timing -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Performance Fingerprint</h3>
           <p class="text-sm text-slate-400 mb-3">Benchmarks CPU to identify device performance class.</p>
@@ -196,10 +187,16 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: CPU/browser combo identification</p>
         </div>
 
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Deep WebGL Fingerprint</h3>
+          <p class="text-sm text-slate-400 mb-3">Extracts GPU extensions and texture limits.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="webglDeepOutput">Probing GPU...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: extremely unique hardware identification</p>
+        </div>
+
       </div>
     </section>
 
-    <!-- MODERATE RISK -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <h2 class="text-xl font-semibold text-yellow-400">Moderate Risk · Behavioral Tracking</h2>
@@ -208,7 +205,6 @@
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Scroll behavior -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Scroll Behavior</h3>
           <p class="text-sm text-slate-400 mb-3">Tracks position and speed of scrolling.</p>
@@ -216,7 +212,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: engagement metrics, profiling</p>
         </div>
 
-        <!-- Clicks and focus -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Clicks & Focus Events</h3>
           <p class="text-sm text-slate-400 mb-3">Records clicks and when the page gains or loses focus.</p>
@@ -224,7 +219,13 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: ad targeting, behavioral profiling</p>
         </div>
 
-        <!-- Touch events -->
+        <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Typing Biometrics</h3>
+          <p class="text-sm text-slate-400 mb-3">Measures "flight time" between keystrokes.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto" id="typingBioOutput">Type fast to see flight times...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: behavioral identification (like a fingerprint for how you type)</p>
+        </div>
+
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Touch Events</h3>
           <p class="text-sm text-slate-400 mb-3">Taps, multi-touch and gestures on mobile devices.</p>
@@ -232,7 +233,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: gesture profiling, UX analysis</p>
         </div>
 
-        <!-- Visibility / idle -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Visibility & Idle</h3>
           <p class="text-sm text-slate-400 mb-3">Tracks when you switch tabs and basic idle time.</p>
@@ -240,7 +240,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: attention scoring, ad timing</p>
         </div>
 
-        <!-- Canvas fingerprint -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Canvas Fingerprint</h3>
           <p class="text-sm text-slate-400 mb-3">Draws to canvas to get a platform-specific rendering hash.</p>
@@ -248,7 +247,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: cross-site fingerprinting</p>
         </div>
 
-        <!-- Local storage / cookies -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Local Storage & Cookies</h3>
           <p class="text-sm text-slate-400 mb-3">Shows keys in localStorage and whether cookies are enabled.</p>
@@ -256,7 +254,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: persistent identifiers, tracking</p>
         </div>
 
-        <!-- WebGL info -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">WebGL Renderer</h3>
           <p class="text-sm text-slate-400 mb-3">Attempts to read the GPU renderer string via WebGL.</p>
@@ -264,7 +261,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: fingerprinting, device classification</p>
         </div>
 
-        <!-- Resource Timing -->
         <div class="bg-slate-900 border border-yellow-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Resource Timing & Caching</h3>
           <p class="text-sm text-slate-400 mb-3">Detects cached resources to identify repeat visitors.</p>
@@ -275,7 +271,6 @@
       </div>
     </section>
 
-    <!-- HIGH RISK -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <h2 class="text-xl font-semibold text-red-400">High Risk · Sensitive Access</h2>
@@ -284,7 +279,6 @@
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Location -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Location Access</h3>
           <p class="text-sm text-slate-400 mb-3">Requests precise geolocation from your browser.</p>
@@ -293,7 +287,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: tracking real world movements</p>
         </div>
 
-        <!-- Camera -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Camera Access</h3>
           <p class="text-sm text-slate-400 mb-3">Requests camera stream via getUserMedia.</p>
@@ -303,7 +296,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: visual surveillance, facial analysis</p>
         </div>
 
-        <!-- Microphone -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Microphone Access</h3>
           <p class="text-sm text-slate-400 mb-3">Requests microphone stream via getUserMedia.</p>
@@ -312,7 +304,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: audio surveillance, voice profiling</p>
         </div>
 
-        <!-- Clipboard -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Clipboard Read</h3>
           <p class="text-sm text-slate-400 mb-3">Reads clipboard text after a user gesture.</p>
@@ -321,7 +312,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: leak copied secrets, tokens</p>
         </div>
 
-        <!-- Notifications -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Notifications Permission</h3>
           <p class="text-sm text-slate-400 mb-3">Requests push/notification permission.</p>
@@ -330,7 +320,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: spam, phishing prompts</p>
         </div>
 
-        <!-- Device motion (mobile) -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Device Motion & Orientation</h3>
           <p class="text-sm text-slate-400 mb-3">Accelerometer and orientation data on supported devices.</p>
@@ -339,7 +328,14 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: keystroke inference, gait analysis</p>
         </div>
 
-        <!-- Bluetooth example -->
+        <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Ambient Light Sensor</h3>
+          <p class="text-sm text-slate-400 mb-3">Detects room lighting level (requires flag on some browsers).</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-20 overflow-auto mb-3" id="lightOutput">Sensor not started.</div>
+          <button onclick="startLightSensor()" class="w-full bg-red-600 hover:bg-red-500 text-white text-sm font-medium py-2 rounded-lg transition">Start Light Sensor</button>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: knowing if you are in a dark room vs office</p>
+        </div>
+
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Bluetooth Request</h3>
           <p class="text-sm text-slate-400 mb-3">Attempts to request a nearby Bluetooth device.</p>
@@ -348,7 +344,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: local device linkage, fingerprinting</p>
         </div>
 
-        <!-- Screen Capture -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Screen Capture</h3>
           <p class="text-sm text-slate-400 mb-3">Requests screen/window sharing permission.</p>
@@ -357,7 +352,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: screen recording, surveillance</p>
         </div>
 
-        <!-- Gamepad -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Gamepad Detection</h3>
           <p class="text-sm text-slate-400 mb-3">Detects connected game controllers.</p>
@@ -366,7 +360,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: device fingerprinting</p>
         </div>
 
-        <!-- WebUSB -->
         <div class="bg-slate-900 border border-red-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">WebUSB Request</h3>
           <p class="text-sm text-slate-400 mb-3">Attempts to access USB devices.</p>
@@ -378,7 +371,6 @@
       </div>
     </section>
 
-    <!-- NEW: NETWORK & CORRELATION -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <h2 class="text-xl font-semibold text-purple-400">Network & Correlation · Tracking Hacks</h2>
@@ -387,7 +379,13 @@
 
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-        <!-- Public IP & Geo -->
+        <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
+          <h3 class="font-semibold mb-1">Extension Detector</h3>
+          <p class="text-sm text-slate-400 mb-3">Scans for known IDs and global variables.</p>
+          <div class="bg-slate-800 rounded-lg p-3 text-sm h-28 overflow-auto mb-3" id="extOutput">Scanning for extensions...</div>
+          <p class="mt-3 text-xs text-slate-400">What this could be used for: profiling user interests (crypto, dev, privacy)</p>
+        </div>
+
         <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Public IP & Geo Lookup</h3>
           <p class="text-sm text-slate-400 mb-3">Queries public IP and geolocation from a public API.</p>
@@ -395,7 +393,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: precise IP location, ISP and org mapping</p>
         </div>
 
-        <!-- WebRTC local IPs -->
         <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">WebRTC Local IP Discovery</h3>
           <p class="text-sm text-slate-400 mb-3">Attempts to reveal local LAN IPs via WebRTC ICE candidates.</p>
@@ -403,7 +400,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: correlate device to home network, local device fingerprinting</p>
         </div>
 
-        <!-- Time-based inference -->
         <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Time & Locale Correlation</h3>
           <p class="text-sm text-slate-400 mb-3">Local time, UTC offset and heuristics to narrow region.</p>
@@ -411,7 +407,6 @@
           <p class="mt-3 text-xs text-slate-400">What this could be used for: narrow IP ambiguity, correlate with other signals</p>
         </div>
 
-        <!-- Combined inference -->
         <div class="bg-slate-900 border border-purple-500/20 rounded-2xl p-6">
           <h3 class="font-semibold mb-1">Combined Inference</h3>
           <p class="text-sm text-slate-400 mb-3">Correlates IP geolocation, timezone and user agent to make a best guess.</p>
@@ -422,7 +417,6 @@
       </div>
     </section>
 
-    <!-- PERMISSIONS SUMMARY -->
     <section>
       <div class="flex items-center gap-3 mb-6">
         <h2 class="text-lg font-semibold text-slate-200">Permissions & Status</h2>
@@ -471,10 +465,34 @@
       mouseOutput.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
     });
 
-    // keyboard
+    // keyboard (Modified for Typing Biometrics)
+    let lastKeyUpTime = 0;
+    const typingBioOutput = document.getElementById("typingBioOutput");
+    let flightTimes = [];
+    
     document.addEventListener("keydown", (e) => {
+      // Original logger
       keyOutput.textContent += `Key: ${e.key}\n`;
       keyOutput.scrollTop = keyOutput.scrollHeight;
+      
+      // NEW: Typing Biometrics (Flight Time)
+      const now = performance.now();
+      if (lastKeyUpTime > 0) {
+          const flightTime = now - lastKeyUpTime;
+          // Ignore extremely long pauses (user stopped typing)
+          if(flightTime < 2000) {
+             flightTimes.push(flightTime.toFixed(0));
+          }
+          if(flightTimes.length > 8) flightTimes.shift();
+          
+          if(typingBioOutput) {
+            typingBioOutput.textContent = `Flight times (ms): ${flightTimes.join(", ")}`;
+          }
+      }
+    });
+    
+    document.addEventListener("keyup", () => {
+        lastKeyUpTime = performance.now();
     });
 
     // user agent and platform
@@ -513,7 +531,7 @@
       storageOutput.textContent = `localStorage keys: ${keys}\ncookies: ${cookies}`;
     })();
 
-    // canvas fingerprint - simple example
+    // canvas fingerprint
     (function canvasFingerprint() {
       try {
         const c = document.createElement("canvas");
@@ -529,7 +547,6 @@
         ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
         ctx.fillText("fingerprint test", 4, 4);
         const data = c.toDataURL();
-        // simple hash
         let hash = 0;
         for (let i = 0; i < data.length; i++) hash = (hash << 5) - hash + data.charCodeAt(i);
         canvasOutput.textContent = `canvas hash: ${hash}`;
@@ -554,9 +571,52 @@
         webglOutput.textContent = "WebGL error";
       }
     })();
-
-    // --- NEW LOW RISK trackers ---
     
+    // NEW: Deep WebGL Fingerprinting
+    (function deepWebGL() {
+        const output = document.getElementById('webglDeepOutput');
+        try {
+            const canvas = document.createElement("canvas");
+            const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+            if (!gl) { output.textContent = "WebGL not supported"; return; }
+            
+            const extensions = gl.getSupportedExtensions();
+            const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+            const maxCube = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
+            const vendor = gl.getParameter(gl.VENDOR);
+            
+            output.textContent = `Extensions count: ${extensions.length}\nMax Texture: ${maxTex}\nMax Cube Map: ${maxCube}\nVendor: ${vendor}`;
+        } catch(e) {
+            output.textContent = "Error scanning WebGL";
+        }
+    })();
+
+    // NEW: Window Entropy
+    (function windowEntropy() {
+        const output = document.getElementById('entropyOutput');
+        try {
+            const keys = Object.getOwnPropertyNames(window);
+            const count = keys.length;
+            // Check for common bot/automation flags
+            const suspicion = keys.filter(k => 
+                k.startsWith('webdriver') || 
+                k.startsWith('_phantom') || 
+                k === 'callPhantom' ||
+                k === '__nightmare'
+            );
+            
+            let msg = `Global Properties: ${count}`;
+            if(suspicion.length > 0) {
+                msg += `\n⚠️ Suspicious props: ${suspicion.join(", ")}`;
+            } else {
+                msg += `\nNo obvious automation flags.`;
+            }
+            output.textContent = msg;
+        } catch(e) {
+            output.textContent = "Error scanning window";
+        }
+    })();
+
     // Font fingerprinting
     (function fontFingerprint() {
       const fontOutput = document.getElementById("fontOutput");
@@ -590,11 +650,10 @@
       fontOutput.textContent = `Detected fonts: ${detected.length}\nSample: ${detected.slice(0, 5).join(", ")}${detected.length > 5 ? "..." : ""}`;
     })();
 
-    // Audio fingerprinting (modern approach without deprecated APIs)
+    // Audio fingerprinting
     (function audioFingerprint() {
       const audioOutput = document.getElementById("audioOutput");
       try {
-        // Use OfflineAudioContext to avoid autoplay policy and deprecation warnings
         const context = new OfflineAudioContext(1, 44100, 44100);
         const oscillator = context.createOscillator();
         const compressor = context.createDynamicsCompressor();
@@ -628,7 +687,7 @@
       }
     })();
 
-    // Media devices enumeration (without permission)
+    // Media devices enumeration
     (async function enumerateMediaDevices() {
       const mediaDevicesOutput = document.getElementById("mediaDevicesOutput");
       try {
@@ -677,7 +736,6 @@
         voicesOutput.textContent = "Speech synthesis not available";
         return;
       }
-      
       function updateVoices() {
         const voices = speechSynthesis.getVoices();
         if (voices.length > 0) {
@@ -687,7 +745,6 @@
           voicesOutput.textContent = "No voices available";
         }
       }
-      
       speechSynthesis.onvoiceschanged = updateVoices;
       updateVoices();
     })();
@@ -697,13 +754,10 @@
       const perfOutput = document.getElementById("perfOutput");
       const start = performance.now();
       let iterations = 0;
-      
-      // Simple CPU benchmark
       for (let i = 0; i < 1000000; i++) {
         Math.sqrt(i);
         iterations++;
       }
-      
       const elapsed = performance.now() - start;
       perfOutput.textContent = `1M iterations: ${elapsed.toFixed(2)}ms\nPerformance class: ${elapsed < 20 ? "High" : elapsed < 50 ? "Medium" : "Low"}`;
     })();
@@ -874,8 +928,38 @@
       }
     }
 
-    // --- NEW HIGH RISK functions ---
-    
+    // NEW: Ambient Light Sensor (requires generic sensor API)
+    function startLightSensor() {
+        const out = document.getElementById('lightOutput');
+        if ('AmbientLightSensor' in window) {
+            try {
+                const sensor = new AmbientLightSensor();
+                sensor.onreading = () => {
+                    const lux = sensor.illuminance;
+                    let desc = "Dim/Dark";
+                    if(lux > 100) desc = "Normal/Office";
+                    if(lux > 1000) desc = "Bright/Outdoors";
+                    out.textContent = `Illuminance: ${lux} lux (${desc})`;
+                };
+                sensor.onerror = (event) => {
+                    if (event.error.name === 'NotAllowedError') {
+                         out.textContent = 'Permission denied.';
+                    } else if (event.error.name === 'NotReadableError') {
+                         out.textContent = 'Sensor not available.';
+                    } else {
+                        out.textContent = 'Sensor error: ' + event.error.name;
+                    }
+                };
+                sensor.start();
+                out.textContent = "Sensor started...";
+            } catch (err) {
+                out.textContent = "Error initializing sensor (Check flags)";
+            }
+        } else {
+            out.textContent = "AmbientLightSensor API not supported by browser.";
+        }
+    }
+
     // Screen capture
     async function requestScreenCapture() {
       const screenCaptureOutput = document.getElementById("screenCaptureOutput");
@@ -936,12 +1020,61 @@
     const webrtcOutput = document.getElementById("webrtcOutput");
     const timeInferOutput = document.getElementById("timeInferOutput");
     const combinedOutput = document.getElementById("combinedOutput");
+    
+    // NEW: Hybrid Extension Detection
+    (async function detectExtensions() {
+        const out = document.getElementById('extOutput');
+        const detected = [];
+        
+        // 1. Dynamic Global Property Scan
+        // Checks for objects injected into window by extensions
+        const globalSignatures = {
+            'MetaMask/Wallet': ['ethereum', 'web3'],
+            'React DevTools': ['__REACT_DEVTOOLS_GLOBAL_HOOK__'],
+            'Redux DevTools': ['__REDUX_DEVTOOLS_EXTENSION__'],
+            'Vue DevTools': ['__VUE_DEVTOOLS_GLOBAL_HOOK__'],
+            'Honey': ['honey'],
+            'LastPass': ['LastPass']
+        };
+        
+        for (const [name, props] of Object.entries(globalSignatures)) {
+            if (props.some(prop => window.hasOwnProperty(prop) || window[prop])) {
+                detected.push(`${name} (via Global Var)`);
+            }
+        }
+        
+        // 2. Resource Scan (Manifest Check) for survivors
+        // Note: Most extensions now block this. These are some legacy IDs.
+        const extensions = {
+            'uBlock Origin': 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 
+            'LastPass': 'hdokiejnpimakedhajhdlcegeplioahd',
+            'Hidden Eye': 'ldblhhillhmllklemnecjjehldbhpbkh',
+        };
+        
+        // We use a short timeout fetch to check existence
+        for (const [name, id] of Object.entries(extensions)) {
+            try {
+                const controller = new AbortController();
+                const idTimeout = setTimeout(() => controller.abort(), 100); 
+                const res = await fetch(`chrome-extension://${id}/manifest.json`, { signal: controller.signal });
+                clearTimeout(idTimeout);
+                if (res.ok) detected.push(`${name} (via Manifest)`);
+            } catch (e) {
+                // Ignore fetch errors
+            }
+        }
+        
+        if (detected.length > 0) {
+            out.textContent = "Detected likely extensions:\n" + detected.join("\n");
+        } else {
+            out.textContent = "No extensions detected (browsers hide them well).";
+        }
+    })();
 
-    // 1) Public IP and IP-based geolocation using a public API (runs automatically)
+    // Public IP & Geo
     (async function fetchIpInfo() {
       ipOutput.textContent = "Fetching public IP and geolocation...";
       const controllers = [
-        // prefer ipapi which typically provides city, region, country, org
         fetchWithTimeout("https://ipapi.co/json/", { timeout: 5000 }),
         fetchWithTimeout("https://api.ipify.org?format=json", { timeout: 5000 })
       ];
@@ -949,7 +1082,6 @@
         const res = await controllers[0];
         if (res.ok) {
           const data = await res.json();
-          // ipapi returns ip, city, region, country_name, org, latitude, longitude
           ipOutput.textContent = `IP: ${data.ip || "(unknown)"}\n${data.city || ""}${data.region ? ", " + data.region : ""} ${data.country_name ? "(" + data.country_name + ")" : ""}\nOrg: ${data.org || data.org || "n/a"}\nLat/Lng: ${data.latitude || data.lat || "n/a"}/${data.longitude || data.lon || "n/a"}`;
           window._ipInfo = data;
           updateCombined();
@@ -958,7 +1090,6 @@
           throw new Error("ipapi failed");
         }
       } catch (e) {
-        // fallback to simple ip fetch
         try {
           const resp = await controllers[1];
           if (resp.ok) {
@@ -974,36 +1105,30 @@
       }
     })();
 
-    // helper for fetch with timeout
     function fetchWithTimeout(url, { timeout = 5000 } = {}) {
       const ctl = new AbortController();
       const id = setTimeout(() => ctl.abort(), timeout);
       return fetch(url, { signal: ctl.signal }).finally(() => clearTimeout(id));
     }
 
-    // 2) WebRTC trick to try to reveal local IP addresses via ICE candidates
+    // WebRTC
     (function discoverLocalIPs() {
       webrtcOutput.textContent = "Probing local addresses via WebRTC (may be blocked by browser)...";
       const ips = new Set();
-      // modern browsers may prevent this; wrap in try
       try {
         const pc = new RTCPeerConnection({ iceServers: [] });
-        // data channel is needed for some browsers
         pc.createDataChannel("probe");
         pc.onicecandidate = (evt) => {
           if (!evt || !evt.candidate) return;
           const cand = evt.candidate.candidate;
-          // extract ips from candidate string
           const parts = cand.split(/\s+/);
           for (let i = 0; i < parts.length; i++) {
             const p = parts[i];
-            // simple ip regex for IPv4 and v6
             const ipMatch = p.match(/([0-9]{1,3}(\.[0-9]{1,3}){3})|([a-f0-9:]{5,})/i);
             if (ipMatch) ips.add(ipMatch[0]);
           }
         };
         pc.createOffer().then(o => pc.setLocalDescription(o)).catch(() => {});
-        // finalize after a short timeout
         setTimeout(() => {
           const list = Array.from(ips);
           if (list.length) {
@@ -1018,19 +1143,18 @@
       }
     })();
 
-    // 3) Time based inference
+    // Time based inference
     (function timeBasedInference() {
       const now = new Date();
-      const offsetMinutes = now.getTimezoneOffset(); // minutes behind UTC
+      const offsetMinutes = now.getTimezoneOffset();
       const offsetHours = -offsetMinutes / 60;
       const localTime = now.toLocaleString();
-      // Simple heuristics: use timezone string to show likely region candidates is complex, so just show offset
       timeInferOutput.textContent = `Local time: ${localTime}\nUTC offset: ${offsetHours >= 0 ? "+" : ""}${offsetHours} hours\nTimezone id: ${tz}`;
       window._timeInfo = { localTime, offsetHours, tz };
       updateCombined();
     })();
 
-    // 4) Combined inference - correlate ip geolocation and timezone and ua
+    // Combined inference
     function updateCombined() {
       const ip = window._ipInfo || {};
       const time = window._timeInfo || {};
@@ -1047,8 +1171,6 @@
         combinedOutput.textContent = lines.join("\n");
       }
     }
-
-    // call updateCombined after ip fetch completes - handled in fetchIpInfo and timeBasedInference above
 
     // --- PERMISSIONS SUMMARY ---
     const permGeo = document.getElementById("permGeo");
@@ -1073,15 +1195,12 @@
       permNotif.textContent = (typeof Notification !== "undefined") ? Notification.permission : "unsupported";
     }
 
-    // initial update
     updatePermissionStatus();
-    // refresh permissions occasionally
     setInterval(updatePermissionStatus, 5000);
-
-    // initial combined update in case ip or time already set
     setTimeout(updateCombined, 800);
 
   </script>
 
 </body>
+
 </html>
